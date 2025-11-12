@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import java.util.Calendar
 
 class GratitudeViewModel(
     private val dao: TimestampDao
@@ -52,8 +53,15 @@ class GratitudeViewModel(
                 /*if(time.isBlank() || type == TimestampType.INIT) {
                     return
                 }*/
+                val calendar = Calendar.getInstance()
+
                 val timestamp = Timestamp(
-                    time = getTimeString(),
+                    day = calendar.get(Calendar.DAY_OF_MONTH),
+                    month = calendar.get(Calendar.MONTH) + 1, // MONTH ist 0-based
+                    year = calendar.get(Calendar.YEAR),
+                    hour = calendar.get(Calendar.HOUR_OF_DAY),
+                    minute = calendar.get(Calendar.MINUTE),
+                    second = calendar.get(Calendar.SECOND),
                     type = type
                 )
                 viewModelScope.launch{
@@ -88,23 +96,20 @@ class GratitudeViewModel(
 
 
     fun addTimeStamp(type: TimestampType) {
+        val calendar = Calendar.getInstance()
         viewModelScope.launch {
             dao.upsertTimestamp(
                 Timestamp(
                     id = 0,
                     type = type,
-                    time = getTimeString()
+                    day = calendar.get(Calendar.DAY_OF_MONTH),
+                    month = calendar.get(Calendar.MONTH) + 1, // MONTH ist 0-based
+                    year = calendar.get(Calendar.YEAR),
+                    hour = calendar.get(Calendar.HOUR_OF_DAY),
+                    minute = calendar.get(Calendar.MINUTE),
+                    second = calendar.get(Calendar.SECOND)
                 )
             )
         }
-    }
-
-    fun getTimeString(): String {
-        // simple date format
-        val sdf =
-            SimpleDateFormat("'Date: 'dd-MM-yyyy '\nTime: 'HH:mm:ss z", Locale.getDefault())
-
-        // current date and time and calling a simple date format
-        return sdf.format(Date())
     }
 }

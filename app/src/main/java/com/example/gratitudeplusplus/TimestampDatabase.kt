@@ -9,5 +9,4 @@ import androidx.room.RoomDatabase
 )
 abstract class TimestampDatabase: RoomDatabase() {
     abstract val dao: TimestampDao
-
 }
