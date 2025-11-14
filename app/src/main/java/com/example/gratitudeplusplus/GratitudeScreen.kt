@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.Dining
 import androidx.compose.material.icons.filled.Diversity3
 import androidx.compose.material.icons.filled.Favorite
@@ -48,6 +49,22 @@ fun GratitudeScreen(
                 horizontalAlignment = Alignment.End
             ) {
                 if (expanded) {
+                    ExtendedFloatingActionButton(
+                        onClick = {
+                            onEvent(TimestampEvent.SetTimestampType(TimestampType.OTHER))
+                            onEvent(TimestampEvent.SaveTimestamp)
+                            expanded = false
+                        },
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Filled.Apps,
+                                contentDescription = "Other"
+                            )
+                        },
+                        text = { Text("Other") }
+                    )
+
                     ExtendedFloatingActionButton(
                         onClick = {
                             onEvent(TimestampEvent.SetTimestampType(TimestampType.SPORT))
