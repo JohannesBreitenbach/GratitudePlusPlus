@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Dining
+import androidx.compose.material.icons.filled.Diversity3
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FitnessCenter
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
@@ -53,28 +57,13 @@ fun GratitudeScreen(
                         modifier = Modifier.padding(bottom = 8.dp),
                         icon = {
                             Icon(
-                                imageVector = Icons.Default.Favorite,
+                                imageVector = Icons.Filled.FitnessCenter,
                                 contentDescription = "Sport"
                             )
                         },
-                        text = { Text("Sport done") }
+                        text = { Text("Sport") }
                     )
 
-                    ExtendedFloatingActionButton(
-                        onClick = {
-                            onEvent(TimestampEvent.SetTimestampType(TimestampType.SOCIAL_ACTIVITY))
-                            onEvent(TimestampEvent.SaveTimestamp)
-                            expanded = false
-                        },
-                        modifier = Modifier.padding(bottom = 8.dp),
-                        icon = {
-                            Icon(
-                                imageVector = Icons.Default.Favorite,
-                                contentDescription = "Social Activity"
-                            )
-                        },
-                        text = { Text("Social Activity") }
-                    )
 
                     ExtendedFloatingActionButton(
                         onClick = {
@@ -85,7 +74,7 @@ fun GratitudeScreen(
                         modifier = Modifier.padding(bottom = 8.dp),
                         icon = {
                             Icon(
-                                imageVector = Icons.Default.Favorite,
+                                imageVector = Icons.Default.Person,
                                 contentDescription = "Me-Time"
                             )
                         },
@@ -101,11 +90,27 @@ fun GratitudeScreen(
                         modifier = Modifier.padding(bottom = 8.dp),
                         icon = {
                             Icon(
-                                imageVector = Icons.Default.Favorite,
+                                imageVector = Icons.Default.Dining,
                                 contentDescription = "Comfort Food"
                             )
                         },
                         text = { Text("Comfort Food") }
+                    )
+
+                    ExtendedFloatingActionButton(
+                        onClick = {
+                            onEvent(TimestampEvent.SetTimestampType(TimestampType.SOCIAL_ACTIVITY))
+                            onEvent(TimestampEvent.SaveTimestamp)
+                            expanded = false
+                        },
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Diversity3,
+                                contentDescription = "Social Activity"
+                            )
+                        },
+                        text = { Text("Social Activity") }
                     )
                 }
 
